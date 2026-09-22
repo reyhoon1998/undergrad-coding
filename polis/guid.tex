@@ -1,0 +1,27 @@
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+\begin{document}
+\section{Introduction}
+\textbf{The Metropolis algorithm} is a method for generating random samples from a probability distribution that is difficult to sample from directly.
+
+\section{Algorithm}
+\begin{enumerate}
+    \item $x=x_0$
+    \item $y = x + \Delta Rand(-1,1)$ where $\Delta$ is each step length.
+    \item acceptance condition: $Rand(0,1) < \frac {P(y)}{P(x)} $ then $y=x$
+    \item Loop (2) + (3)
+\end{enumerate}
+\section{Acceptance Rate}
+The acceptance rate in the Metropolis algorithm is the proportion of proposed values that are accepted by the algorithm. It depends on the target distribution, the proposal distribution, and the current value of the parameter. A high acceptance rate means that the algorithm is exploring the target distribution efficiently, while a low acceptance rate means that the algorithm is rejecting many proposals and moving slowly. A common rule of thumb is to aim for an acceptance rate of about 0.3-0.7 for optimal performance.
+\section{Correlation Length}
+if the output of our algorithm is ${x_1, x_2, ..., x_N}$, correlation length will be:
+\begin{equation}
+C(j) = \frac{<x_ix_{i+j}>_i -<x_i>_i<x_{i+j}>_i}{\sigma ^ 2}
+\end{equation}
+It is easy to calculate that $C(j)=e^{-\frac{j}{\xi}}$. This shows that the correlation of numbers with the distance of $\xi$ in a sequence that has decreased by $\frac{1}{e}$ can be assumed to be independent.\newline
+In this assignment, I generated Gaussian distribution using Metropolis algorithm. Correlation function and acceptance rate has shown, too.
+\end{document}
