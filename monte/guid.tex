@@ -1,0 +1,39 @@
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+\begin{document}
+\section{Introduction}
+This file provides a brief introduction to two Monte Carlo methods for approximating integrals: \textbf{simple sampling} and \textbf{importance sampling}.
+
+\section{Simple Sampling}
+Simple sampling is a basic technique that uses random samples from a given distribution to estimate the expected value of a function. For example, suppose we want to compute the integral
+\begin{equation}
+I = \int_a^b f(x) dx
+\end{equation}
+where $f(x)$ is a continuous function and $a$ and $b$ are finite constants. We can rewrite this integral as
+\begin{equation}
+I = (b-a) \int_a^b \frac{f(x)}{b-a} dx = (b-a) E[f(X)]
+\end{equation}
+where $X$ is a uniform random variable on $[a,b]$. To approximate $I$, we can generate $n$ independent samples $X_1, X_2, ..., X_n$ from the uniform distribution and use the sample mean as an estimator:
+\begin{equation}
+\hat{I}_n = (b-a) \frac{1}{n} \sum_{i=1}^n f(X_i)
+\end{equation}
+
+\section{Importance Sampling}
+Importance sampling is a variance reduction technique that uses random samples from a different distribution to estimate the expected value of a function. The idea is to choose a distribution that is more similar to the function and gives more weight to the regions where the function is large. For example, suppose we want to compute the integral
+\begin{equation}
+I = \int_a^b f(x) dx
+\end{equation}
+where $f(x)$ is a continuous function and $a$ and $b$ are finite constants. We can rewrite this integral as
+\begin{equation}
+I = \int_a^b \frac{f(x)}{g(x)} g(x) dx = E[f(X) w(X)]
+\end{equation}
+where $X$ is a random variable with density $g(x)$ and $w(x) = 1/g(x)$ is the importance function. To approximate $I$, we can generate $n$ independent samples $X_1, X_2, ..., X_n$ from the density $g(x)$ and use the weighted sample mean as an estimator:
+\begin{equation}
+\hat{I}_n = \frac{1}{n} \sum_{i=1}^n f(X_i) w(X_i)
+\end{equation}
+in this assignment, I use simple and importance sampling to calculate $f(x) = \int_a^b e^{-x^2} dx$. I use $g(x)=e^{-x}$ for importance sampling. Statistical and absolute error of each way are shown.
+\end{document}
