@@ -1,0 +1,32 @@
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+\begin{document}
+\section{Introduction}
+As an example of Metropolis method, in this assignment, I simulated 2-D Ising model in a rectangular lattice with periodic boundary condition.
+\begin{equation}
+ energy = - J \sum _j \sum _{i<j} \sigma_i \sigma_j 
+\end{equation}
+where $\sigma$ can be -1 or +1.\\
+Probability has shown as Boltzmann function $e^{-\beta E}$ where $\beta$ is proportional to inverse of temperature.
+\section{Algorithm}
+\begin{enumerate}
+    \item \textbf{initial state}:\newline
+    $grid = Rand((-1, 1), size = ( l * l)$
+    \item \textbf{Monte-Carlo steps}:\newline
+     \begin{enumerate}
+      \item Randomly choose one element($S$) in the grid for a change in its energy.
+      \item $E(S) = -E(S)$
+      \item check if this change can be accepted.\newline
+      if $\Delta E<0$ then accept.\newline
+      else $Rand(0,1) < \frac{e^{-\beta E(s)}}{e^{-\beta E(i)}}$ then accept.
+\end{enumerate}
+    \item \textbf{Loop (2)}.
+\end{enumerate}
+In this assignment I simulate 2-D Ising model using mentioned algorithm, and calculate correlation length, magnetization, heat capacity, and magnetic susceptibility .\\
+To speed up the algorithm, assume we want to change the energy of $S_{ij}$ from E to -E. In this situation, $\Delta E = -2S_{ij}(S_{i+1j}+S_{i-1j}+S_{ij+1}+S_{ij-1})$ . So, $\Delta E $ will be divisible to 2 and must be $\Delta E = (-8,-4,0,4,8)$. We can calculate the Boltzmann factor for these five cases and call them during the main loop.
+
+\end{document}
