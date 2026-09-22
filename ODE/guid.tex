@@ -1,0 +1,51 @@
+
+\documentclass{article}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+
+\begin{document}
+\section{Introduction}
+In this assignment, I simulate RC circuit and simple harmonic oscillator using ODE, and compare some ODE methods.
+\section{RC circuit: First Ordinary Differential Equation}
+RC circuit equation:\\
+\begin{equation}
+    R\frac{dq}{dt}+\frac{q}{C} = V
+\end{equation}
+For simplicity, R = C = V = 1\\
+\begin{equation}
+    \frac{dq}{dt}+q=1
+\end{equation}
+\begin{equation}
+    \int _0^Q \frac{dq}{1-q} = \int _0^t dt
+\end{equation}
+\begin{equation}
+    q(t) = 1 - e^{-t}
+\end{equation}
+Euler algorithm:\\
+\begin{equation}
+    \frac{dq}{dt} = f(q, t) = 1-q
+\end{equation}
+\begin{equation}
+    q_{n+1} = q_n+f(q_n)h=q_n+(1-q_n)h
+\end{equation}
+At the first part of code, I compared analytical and statistical solution with each other. Relative error is calculated, too.\\ \\
+\section{Algorithm Instability}
+In this section, I show the instability of 
+    $q_{n+1} = q_{n-1}+2f(q_n)h = q_{n-1}+2(1-q_n)h$, while h = 0.01.
+\section{Simple Harmonic Oscillator: Second Ordinary Differential Equation}
+Simple harmonic oscillator:\\
+\begin{equation}
+    -kx = m\ddot x
+\end{equation}
+For simplicity:\\
+\begin{equation}
+    \frac{dx}{dt}= v
+\end{equation}
+\begin{equation}
+    a = \frac{dv}{dt} = -x
+\end{equation}
+Analytical Solution:
+$x_0=1, v_0=0, x=cos t$.\\
+This equation is analyzed with Euler, Euler-Cromer, Frog Leaping, Verlet, Velocity-Verlet and Beeman algorithms.
+\end{document}
